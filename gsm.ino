@@ -23,7 +23,7 @@ String part1;
 String part2;
 
 int percent;
-int pwm_val; // pwm value 
+int pwm_val;
 
 void setup()
 {
@@ -104,10 +104,10 @@ void loop()
     Serial.print('\n');
     Serial.print(part2);
     
-	percent = part2.toInt();
+    percent = part2.toInt();
     Serial.print(percent);
     
-	pwm_val = (percent*255)/100;    
+    pwm_val = (percent*255)/100;    
     Serial.print('\n');
     Serial.print(pwm_val);
     analogWrite(PWM1, pwm_val);
@@ -122,7 +122,7 @@ void loop()
     Serial.print('\n');
     Serial.print(part2);
     
-	percent = part2.toInt();
+    percent = part2.toInt();
     Serial.print(percent);
    
     pwm_val = (percent*255)/100;    
@@ -140,10 +140,10 @@ void loop()
     Serial.print('\n');
     Serial.print(part2);
     
-	percent = part2.toInt();
+    percent = part2.toInt();
     Serial.print(percent);
     
-	pwm_val = (percent*255)/100;    
+    pwm_val = (percent*255)/100;    
     Serial.print('\n');
     Serial.print(pwm_val);
     analogWrite(PWM3, pwm_val);
@@ -158,7 +158,7 @@ void loop()
     Serial.print('\n');
     Serial.print(part2);
 
-	percent = part2.toInt();
+    percent = part2.toInt();
     Serial.print(percent);
 
     pwm_val = (percent*255)/100;    
@@ -170,6 +170,7 @@ void loop()
    if (textMessage.indexOf("LED1 ON") >= 0){
       
     digitalWrite(LED1, HIGH);
+    Serial.println("LED1 ON");
    }
 
    if (textMessage.indexOf("LED2 ON") >= 0){
@@ -192,7 +193,7 @@ void loop()
 
    if (textMessage.indexOf("LED1 OFF") >= 0){
 
-	digitalWrite(LED1, LOW);
+    digitalWrite(LED1, LOW);
     Serial.println("LED1 OFF");
    }
 
@@ -214,7 +215,33 @@ void loop()
     Serial.println("LED4 OFF");
    }
 
-   textMessage = "";
+   if (textMessage.indexOf("ALL ON") >= 0){
+    // turn on all leds
+    digitalWrite(LED1, HIGH);
+    digitalWrite(LED2, HIGH);
+    digitalWrite(LED3, HIGH);
+    digitalWrite(LED4, HIGH);
+    digitalWrite(PWM1, HIGH);
+    digitalWrite(PWM2, HIGH);
+    digitalWrite(PWM3, HIGH);
+    digitalWrite(PWM4, HIGH);
+    Serial.println("All LEDs ON");
+   }
+	
+  if (textMessage.indexOf("ALL OFF") >= 0){
+   // turn off all leds
+   digitalWrite(LED1, LOW);
+   digitalWrite(LED2, LOW);
+   digitalWrite(LED3, LOW);
+   digitalWrite(LED4, LOW);
+   digitalWrite(PWM1, LOW);
+   digitalWrite(PWM2, LOW);
+   digitalWrite(PWM3, LOW);
+   digitalWrite(PWM4, LOW);
+   Serial.println("All LEDs OFF");
+  }
+	
+  textMessage = "";
 
 }
 
